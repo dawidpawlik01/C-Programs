@@ -1,0 +1,88 @@
+#include <iostream>
+
+using namespace std;
+
+const int MAX_SIZE = 100; // ustalenie maksymalnej wartosci na 100
+
+class Stack { // zdefiniowanie stosu za pomoca klasy
+    int tab[MAX_SIZE];
+    int top;
+
+public:
+    Stack() {
+        top = -1;
+    }
+
+
+    void New_s(){
+        top=-1;
+    }
+
+
+    void Push(int x) {
+        if (top == MAX_SIZE - 1) {
+            cout << "Przepelnienie stosu!" << endl;
+        } else {
+            top++;
+            tab[top] = x;
+        }
+    }
+
+    void Pop() {
+        if (top == -1) {
+            cout << "Stos jest pusty" << endl;
+        } else {
+            top--;
+        }
+    }
+
+    void Top() {
+        if (top == -1) {
+            cout << "Brak" << endl;
+        } else {
+            cout << tab[top] << endl;
+        }
+    }
+
+    bool Empty() {
+        return (top == -1);
+    }
+
+    void Usun() {
+        top = -1;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+
+    Stack st;
+
+    for (int i = 0; i < n; i++) {
+        string op;
+        cin >> op;
+
+        if (op == "New_s") {
+            st.New_s();
+        } else if (op == "Push") {
+            int x;
+            cin >> x;
+            st.Push(x);
+        } else if (op == "Pop") {
+            st.Pop();
+        } else if (op == "Top") {
+            st.Top();
+        } else if (op == "Empty?") {
+            if (st.Empty()) {
+                cout << "Tak" << endl;
+            } else {
+                cout << "Nie" << endl;
+            }
+        } else if (op == "Usun") {
+            st.Usun();
+        }
+    }
+
+    return 0;
+}
